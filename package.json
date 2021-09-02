@@ -1,0 +1,15 @@
+{
+  "name": "windi-serve",
+  "version": "1.0.0",
+  "private": false,
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon src/app.js",
+    "start": "node src/app.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {}
+}
