@@ -2,6 +2,7 @@ const express = require('express')
 const path = require('path')
 const {promisify} = require('util')
 
+const initMiddlewares = require('./middlewares')
 const initControllers = require('./controllers')
 
 const serve = express()
@@ -10,6 +11,7 @@ const publicDir = path.resolve('public')
 
 async function bootStrap () {
   serve.use(express.static(publicDir))
+  serve.use(await initMiddlewares())
   serve.use(await initControllers())
   await promisify(serve.listen.bind(serve, port))()
   console.log(`> Started at ${port}`)
