@@ -17,4 +17,18 @@ async function bootStrap () {
   console.log(`> Started at ${port}`)
 }
 
+process.on("unhandledRejection", (err) => {
+  console.error(err)
+  process.exit(1)
+})
+
+function errorHandler (err, req, res, next) {
+  if (res.headersSent) {
+    return next(err)
+  }
+
+  console.error(err)
+  res.redirect('/500.html')
+}
+
 bootStrap()

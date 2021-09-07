@@ -1,7 +1,9 @@
 const {Router} = require('express')
+const bodyParser = require("body-parser")
+
 const shopService = require('../services/shop')
 const {createShopFormSchema} = require('../moulds/ShopForm')
-const bodyParser = require("body-parser");
+const cc = require('../utils/cc')
 
 const SUCCESS_CODE = 0
 const ERROR_CODE = 1
@@ -21,14 +23,14 @@ class ShopController {
     return router
   }
 
-  getAll = async (req, res) => {
+  getAll = cc(async (req, res) => {
     const {pageNum, pageSize} = req.query
     const shopList = await this.shopService.find({pageNum, pageSize})
 
     res.send({code: SUCCESS_CODE, data: shopList})
-  }
+  })
 
-  getOne = async (req, res) => {
+  getOne = cc(async (req, res) => {
     const {shopId} = req.params
     const shopList = await this.shopService.find({id: shopId})
 
@@ -38,9 +40,9 @@ class ShopController {
     else {
       res.status(404).send({success: false, data: null})
     }
-  }
+  })
 
-  post = async (req, res) => {
+  post = cc(async (req, res) => {
     const {name} = req.body
 
     try {
@@ -55,9 +57,9 @@ class ShopController {
     else {
       res.send({code: SUCCESS_CODE, data: shopInfo})
     }
-  }
+  })
 
-  put = async (req,  res) => {
+  put = cc(async (req,  res) => {
     const {shopId} = req.params
     const {name} = req.query
 
@@ -78,9 +80,9 @@ class ShopController {
     else {
       res.status(404).send({code: ERROR_CODE, data: null})
     }
-  }
+  })
 
-  delete = async (req, res) => {
+  delete = cc(async (req, res) => {
     const {shopId} = req.params
     const success = await this.shopService.delete({id: shopId})
 
@@ -88,7 +90,7 @@ class ShopController {
     else {
       res.send({code: SUCCESS_CODE})
     }
-  }
+  })
 }
 
 module.exports = async () => {
