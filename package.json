@@ -15,5 +15,7 @@
     "sqlite3": "^5.0.2",
     "yup": "^0.32.9"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "sequelize-cli": "^6.2.0"
+  }
 }
