@@ -1,0 +1,10 @@
+const path = require('path')
+
+const modelsDir = path.resolve('src/models')
+
+module.exports = {
+  config: `${modelsDir}/config`,
+  'migrations-path': `${modelsDir}/migrate`,
+  'seeders-path': `${modelsDir}/seed`,
+  'models-path': modelsDir,
+}
