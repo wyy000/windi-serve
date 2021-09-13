@@ -3,6 +3,7 @@ const cookieParser = require('cookie-parser')
 const sessionMiddleware = require('./session')
 const urlNormalizeMiddleware = require('./urlNormalize')
 const historyApiMiddleware = require('./historyApi')
+const authMiddleware = require('./auth')
 
 const secret = '842d918ced1888c65a650f993077c3d36b8f114d'
 
@@ -12,5 +13,6 @@ module.exports = async function initMiddlewares () {
   router.use(cookieParser(secret))
   router.use(sessionMiddleware(secret))
   router.use(historyApiMiddleware())
+  router.use(authMiddleware())
   return router
 }
