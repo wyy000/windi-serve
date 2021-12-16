@@ -20,14 +20,14 @@ class LoginController {
   post = cc((req, res) => {
     req.session.logined = true
     const {name} = req.body
-    // res.send({code: SUCCESS_CODE, data: {name: 1}})
-    res.redirect(this.homepagePath)
+    res.send({code: SUCCESS_CODE, data: {name: 1}})
+    // res.redirect(this.homepagePath)
   })
 
   getGithubCallback = (req, res) => {
     req.session.logined = true
-    res.redirect(this.homepagePath)
-    // res.send({code: SUCCESS_CODE, data: {name: 1}})
+    // res.redirect(this.homepagePath)
+    res.send({code: SUCCESS_CODE, data: {name: 1}})
   }
 }
 
